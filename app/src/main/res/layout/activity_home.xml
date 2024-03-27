@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/randomImageView"
         android:layout_width="411dp"
         android:layout_height="263dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"/>
+        app:layout_constraintTop_toBottomOf="@id/randomImageView"/>
 
 
     <TextView

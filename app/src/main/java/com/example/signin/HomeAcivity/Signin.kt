@@ -1,27 +1,44 @@
 package com.example.signin
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
+
+
+
+
 class Signin : AppCompatActivity() {
+    lateinit var idText: EditText
+    lateinit var pwText: EditText
+    var myname: String? = null
+
+    private var resultLanuncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result ->
+        if(result.resultCode == Activity.RESULT_OK) {
+            val nid =result.data?.getStringExtra("nidText")
+            val npw = result.data?.getStringExtra("npwText")
+            myname = result.data?.getStringExtra("myname").toString()
+
+
+            idText.setText(nid)
+            pwText.setText(npw)
+
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val idText = findViewById<EditText>(R.id.tv_sid)
-        val pwText = findViewById<EditText>(R.id.tv_spw)
+        idText = findViewById(R.id.tv_sid)
+        pwText = findViewById(R.id.tv_spw)
         val signinButton = findViewById<Button>(R.id.bt_signin)
         val signupButton = findViewById<Button>(R.id.bt_signup)
-
-        val nid = intent.getStringExtra("nidText")
-        val npw = intent.getStringExtra("npwText")
-        val myname = intent.getStringExtra("myname")
-        idText.setText(nid)
-        pwText.setText(npw)
 
 
 
@@ -53,7 +70,7 @@ class Signin : AppCompatActivity() {
         signupButton.setOnClickListener {
 
             val intent = Intent(this, SignpActivity::class.java)
-            startActivity(intent)
+            resultLanuncher.launch(intent)
         }
     }
 }

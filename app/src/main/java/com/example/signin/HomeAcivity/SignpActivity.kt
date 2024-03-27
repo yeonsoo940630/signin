@@ -37,7 +37,8 @@ class SignpActivity : AppCompatActivity() {
                     intent.putExtra("nidText", nidText.text.toString())
                     intent.putExtra("npwText", npwText.text.toString())
                     intent.putExtra("myname", myname.text.toString())
-                    startActivity(intent)
+                    setResult(RESULT_OK, intent)
+                    finish()
 
                 }
 
